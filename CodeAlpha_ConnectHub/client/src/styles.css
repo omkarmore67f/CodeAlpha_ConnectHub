@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: #181716;
+  background: #fbfaf7;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    linear-gradient(180deg, rgba(251, 250, 247, 0.98), rgba(246, 242, 235, 0.92)),
+    radial-gradient(circle at top left, rgba(47, 107, 87, 0.08), transparent 30%),
+    radial-gradient(circle at top right, rgba(223, 91, 63, 0.08), transparent 28%);
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@layer components {
+  .panel {
+    @apply border border-line bg-white/80 shadow-soft backdrop-blur;
+    border-radius: 8px;
+  }
+
+  .icon-button {
+    @apply inline-flex h-10 w-10 items-center justify-center rounded-full border border-transparent text-stone-600 transition hover:border-line hover:bg-stone-100 hover:text-ink;
+  }
+
+  .primary-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .secondary-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-line bg-white px-4 py-2 text-sm font-semibold text-ink transition hover:bg-stone-50;
+  }
+
+  .input {
+    @apply w-full rounded-2xl border-line bg-white/90 px-4 py-3 text-sm outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/10;
+  }
+}

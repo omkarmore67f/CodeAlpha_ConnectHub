@@ -1,0 +1,40 @@
+services:
+  # Backend API Web Service
+  - type: web
+    name: connecthub-api
+    env: node
+    plan: free
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: CLIENT_URL
+        sync: false  # You will set this to your frontend client URL (e.g. https://connecthub.onrender.com)
+      - key: MONGODB_URI
+        sync: false  # Your MongoDB connection string (e.g. mongodb+srv://...)
+      - key: JWT_SECRET
+        sync: false  # A strong secret key for JWT
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false  # Your Cloudinary Cloud Name
+      - key: CLOUDINARY_API_KEY
+        sync: false  # Your Cloudinary API Key
+      - key: CLOUDINARY_API_SECRET
+        sync: false  # Your Cloudinary API Secret
+
+  # Frontend React SPA Static Site
+  - type: web
+    name: connecthub-client
+    runtime: static
+    plan: free
+    rootDir: client
+    buildCommand: npm install && npm run build
+    publishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        sync: false  # You will set this to your backend api URL (e.g. https://connecthub-api.onrender.com/api)
